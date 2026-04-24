@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Employee {
+  id            String           @id @default(cuid())
+  externalId    String?          @unique
+  name          String?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  leaveBalances LeaveBalance[]
+  requests      TimeOffRequest[]
+}
+
+model LeaveBalance {
+  id           String   @id @default(cuid())
+  employeeId   String
+  locationId   String
+  balance      Float    @default(0)
+  lastSyncedAt DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  employee     Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@unique([employeeId, locationId], name: "employeeId_locationId")
+}
+
+model TimeOffRequest {
+  id             String           @id @default(cuid())
+  employeeId     String
+  locationId     String
+  amount         Float
+  status         TimeOffStatus    @default(PENDING)
+  reason         String?
+  hcmReference   String?
+  idempotencyKey String?          @unique
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  employee       Employee         @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+}
+
+enum TimeOffStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
