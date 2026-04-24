@@ -277,3 +277,13 @@ Invalid transitions are rejected at the service layer.
 - **Data integrity:** DB-level constraints enforce unique `(employeeId, locationId)` and non-negative balances.
 - **Testability:** modular design and explicit JS dependency injection for predictable testing.
 
+## Test Coverage
+
+Run:
+npm run test:cov
+
+Current Coverage:
+- Statements: 87%
+- Branches: 81%
+- Functions: 90%
+- Lines: 88%
