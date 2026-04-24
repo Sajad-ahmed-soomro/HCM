@@ -1,5 +1,11 @@
 # Time-Off Microservice (NestJS + JavaScript + SQLite)
 
+## Repository
+https://github.com/Sajad-ahmed-soomro/HCM
+
+---
+
+Production-oriented time-off microservice built with NestJS (JavaScript), Prisma, and SQLite.
 Production-oriented time-off microservice built with NestJS (JavaScript), Prisma, and SQLite.
 
 It manages time-off requests while synchronizing with a mock HCM service where balances are treated as the authoritative source during reconciliation.
