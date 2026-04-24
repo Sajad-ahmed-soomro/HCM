@@ -271,7 +271,3 @@ Invalid transitions are rejected at the service layer.
 - **Data integrity:** DB-level constraints enforce unique `(employeeId, locationId)` and non-negative balances.
 - **Testability:** modular design and explicit JS dependency injection for predictable testing.
 
-## Notes
-
-- This repository intentionally uses JavaScript (not TypeScript), per requirement.
-- SQLite is used for local persistence and fast local development.
